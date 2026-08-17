@@ -9,31 +9,31 @@ window.STATE =
   "briefFile": "2026-08-17-brief.md",
   "memoryFile": "AGENTS.md",
   "startedAt": "2026-08-17T10:17:19+03:00",
-  "updatedAt": "2026-08-17T10:25:39+03:00",
-  "finishedAt": null,
+  "updatedAt": "2026-08-17T10:33:32+03:00",
+  "finishedAt": "2026-08-17T10:33:32+03:00",
   "stages": [
     { "id": "preflight", "status": "done", "startedAt": "2026-08-17T10:17:19+03:00", "finishedAt": "2026-08-17T10:18:28+03:00" },
     { "id": "manifest",  "status": "done", "startedAt": "2026-08-17T10:18:28+03:00", "finishedAt": "2026-08-17T10:19:22+03:00" },
     { "id": "briefing",  "status": "skipped", "startedAt": "2026-08-17T10:19:22+03:00", "finishedAt": "2026-08-17T10:23:16+03:00", "note": "полный автомат — самобрифинг" },
     { "id": "spec",      "status": "done", "startedAt": "2026-08-17T10:23:16+03:00", "finishedAt": "2026-08-17T10:25:39+03:00" },
     { "id": "plan",      "status": "skipped", "startedAt": "2026-08-17T10:25:39+03:00", "finishedAt": "2026-08-17T10:25:39+03:00", "note": "ярус T0 — без разбивки на таски" },
-    { "id": "build",     "status": "active", "startedAt": "2026-08-17T10:25:39+03:00" },
-    { "id": "review",    "status": "pending" },
-    { "id": "final",     "status": "pending" }
+    { "id": "build",     "status": "done", "startedAt": "2026-08-17T10:25:39+03:00", "finishedAt": "2026-08-17T10:28:45+03:00" },
+    { "id": "review",    "status": "done", "startedAt": "2026-08-17T10:28:00+03:00", "finishedAt": "2026-08-17T10:28:45+03:00", "note": "T0 — три оси, чисто" },
+    { "id": "final",     "status": "done", "startedAt": "2026-08-17T10:28:45+03:00", "finishedAt": "2026-08-17T10:33:32+03:00" }
   ],
   "requirements": {
-    "total": 6, "done": 0, "inTicket": 0, "inSpec": 6,
+    "total": 6, "done": 6, "inTicket": 0, "inSpec": 0,
     "placeholder": 0, "deferred": 0, "dropped": 0
   },
   "tickets": [],
   "singlePass": {
     "startedAt": "2026-08-17T10:25:39+03:00",
-    "finishedAt": null,
-    "files": [],
-    "tests": null,
-    "commit": null
+    "finishedAt": "2026-08-17T10:28:45+03:00",
+    "files": ["Bitrix24-MCP.exe", "scripts/launcher/Program.cs", "scripts/build-launcher.ps1", "test/launcher.test.mjs", "README.md"],
+    "tests": { "passed": 61, "failed": 0 },
+    "commit": "b75f15a"
   },
-  "tests": null,
+  "tests": { "passed": 61, "failed": 0 },
   "debt": {
     "placeholders": [],
     "assumptions": [
@@ -51,5 +51,9 @@ window.STATE =
     "extra": 24,
     "action": "лишнее — углубления R##.n и ASSUMPTION самобрифинга, уже с родителем; ничего не добавлял и не вырезал"
   },
-  "blind": null
+  "blind": {
+    "agreed": 1,
+    "drift": 0,
+    "notes": "бриф: файл запуска .exe — реализовано; запуск поднял HTTP-шлюз, GET /ping вернул pong"
+  }
 }
