@@ -1,0 +1,99 @@
+import { z } from 'zod';
+import { Bitrix24Client } from '../bitrix24/client.js';
+import { fetchListPage, listPayload, resolveSelect, LIST_LIMIT_FIELD, LIST_START_FIELD } from '../utils/pagination.js';
+import { resolveWebhook, createClient, PERSONAL_WEBHOOK_FIELD } from '../utils/resolve-webhook.js';
+
+// ─── LIST ─────────────────────────────────────────────────────────────────────
+
+export const tasksListSchema = z.object({
+  filter: z.record(z.any()).optional().default({}).describe(
+    'Filtros. Ejemplo: { "RESPONSIBLE_ID": 5, "GROUP_ID": 10, "STATUS": "2" } ' +
+    'Status: 1=nueva, 2=pendiente, 3=en proceso, 4=casi vencida, 5=completada, 6=vencida'
+  ),
+  select: z.array(z.string()).optional().describe(
+    'Campos a retornar. Default: ID, TITLE, STATUS, RESPONSIBLE_ID, DEADLINE. ' +
+    'Otros: DESCRIPTION, CREATED_BY, GROUP_ID, PRIORITY, TAGS, CHECKLIST'
+  ),
+  order: z.record(z.string()).optional().default({ DEADLINE: 'ASC' }),
+  all_pages: z.boolean().optional().default(false),
+  limit: LIST_LIMIT_FIELD,
+  start: LIST_START_FIELD,
+  webhook_url: z.string().url().optional(),
+});
+
+const TASKS_DEFAULT_SELECT = ['ID', 'TITLE', 'STATUS', 'RESPONSIBLE_ID', 'DEADLINE', 'GROUP_ID', 'CREATED_BY'];
+
+export async function tasksList({ filter = {}, select, order = { DEADLINE: 'ASC' }, all_pages = false, limit, start, webhook_url }) {
+  const client = new Bitrix24Client(resolveWebhook(webhook_url));
+  const selectParam = resolveSelect(select, TASKS_DEFAULT_SELECT);
+  const params = {
+    filter,
+    order,
+    ...(selectParam ? { select: selectParam } : {}),
+  };
+
+  const page = await fetchListPage(client, 'tasks.task.list', params, { all_pages, limit, start });
+  return listPayload('tasks', page, { portal: client.portal });
+}
+
+// ─── GET ──────────────────────────────────────────────────────────────────────
+
+export const tasksGetSchema = z.object({
+  id: z.union([z.string(), z.number()]).describe('ID de la tarea'),
+  select: z.array(z.string()).optional().describe('Campos a retornar'),
+  webhook_url: z.string().url().optional(),
+});
+
+export async function tasksGet({ id, select, webhook_url }) {
+  const client = new Bitrix24Client(resolveWebhook(webhook_url));
+  const params = { taskId: id, ...(select ? { select } : {}) };
+  const res = await client.call('tasks.task.get', params);
+  return { portal: client.portal, task: res.result?.task ?? res.result };
+}
+
+// ─── CREATE ───────────────────────────────────────────────────────────────────
+
+export const tasksCreateSchema = z.object({
+  fields: z.record(z.any()).describe(
+    'Campos de la tarea. Requeridos: TITLE. ' +
+    'Opcionales: DESCRIPTION, RESPONSIBLE_ID, DEADLINE (ISO8601), GROUP_ID, ' +
+    'PRIORITY (0=baja, 1=normal, 2=alta), PARENT_ID, TAGS, CHECKLIST'
+  ),
+  webhook_url: z.string().url().optional(),
+  personal_webhook: PERSONAL_WEBHOOK_FIELD,
+});
+
+export async function tasksCreate({ fields, webhook_url, personal_webhook }) {
+  const client = createClient({ webhook_url, personal_webhook });
+  const res = await client.call('tasks.task.add', { fields });
+  return { portal: client.portal, created_id: res.result?.task?.id ?? res.result, success: true };
+}
+
+// ─── UPDATE ───────────────────────────────────────────────────────────────────
+
+export const tasksUpdateSchema = z.object({
+  id: z.union([z.string(), z.number()]),
+  fields: z.record(z.any()).describe('Campos a actualizar'),
+  webhook_url: z.string().url().optional(),
+  personal_webhook: PERSONAL_WEBHOOK_FIELD,
+});
+
+export async function tasksUpdate({ id, fields, webhook_url, personal_webhook }) {
+  const client = createClient({ webhook_url, personal_webhook });
+  await client.call('tasks.task.update', { taskId: id, fields });
+  return { portal: client.portal, updated_id: id, success: true };
+}
+
+// ─── COMPLETE ─────────────────────────────────────────────────────────────────
+
+export const tasksCompleteSchema = z.object({
+  id: z.union([z.string(), z.number()]).describe('ID de la tarea a completar'),
+  webhook_url: z.string().url().optional(),
+  personal_webhook: PERSONAL_WEBHOOK_FIELD,
+});
+
+export async function tasksComplete({ id, webhook_url, personal_webhook }) {
+  const client = createClient({ webhook_url, personal_webhook });
+  await client.call('tasks.task.complete', { taskId: id });
+  return { portal: client.portal, completed_id: id, success: true };
+}

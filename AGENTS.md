@@ -10,7 +10,7 @@ MCP-сервер для Claude и других MCP-клиентов: CRM, зад
 | `npm install` | Установить зависимости (Node ≥ 18, ESM) |
 | `npm start` | stdio MCP (`index.js`); без TTY сразу выходит 0 |
 | `npm run start:http` | HTTP `/mcp` + SSE `/sse` (`server-http.js`); `PORT` или 5015, `/ping` → `pong` |
-| `npm test` | `test/readonly.test.mjs`, без сети |
+| `npm test` | `test/readonly.test.mjs` + `test/mcp-response.test.mjs`, без сети |
 | `node test/launcher.test.mjs` | шов `.exe`; не-Windows сразу 0 |
 | `powershell -ExecutionPolicy Bypass -File scripts/build-launcher.ps1` | `Bitrix24-MCP.exe` в корне через `csc.exe` |
 | `.\Bitrix24-MCP.exe` | HTTP-шлюз: читает `.env`, при отсутствии `node_modules` делает `npm install` |
@@ -37,6 +37,7 @@ deploy/                  Docker/Swarm; `run-gateway.sh` всё ещё mcp-proxy+
 - `X-B24-Webhook` работает только на HTTP-шлюзе; stdio — параметр `personal_webhook`. В read-only `webhook_url` игнорируется.
 - `B24_PERSONAL_WEBHOOK` в compose/CI Node не читает. `B24_REQUIRED_SCOPES` из `.env.example` в коде нет.
 - Write-тулы всегда зарегистрированы; гард на вызове. Сборка `.exe` — `csc.exe` из .NET Framework 4, не `dotnet`.
+- `B24_MCP_PROFILE`: не задан/`daily` → без `b24_read_full_config`, `b24_apply_config`, `b24_compare_configs`, `b24_save_user_mapping` (40 tools). `full` → все 44. Ответы MCP — компактный JSON, list по умолчанию `limit=20` и узкий `select`.
 - `MCP_API_KEY` → заголовок `X-API-Key`; `/ping` и `/health` до этой проверки.
 
 ## Как здесь работает Autopilot

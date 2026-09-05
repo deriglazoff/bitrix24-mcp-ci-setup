@@ -1,0 +1,17 @@
+[Unit]
+Description=Bitrix24 MCP gateway (PROD) on :5014
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mokhovs
+WorkingDirectory=/mnt/c/projects/bitrix24-mcp-bit2beat
+# nvm-node должен быть в PATH (npx/node):
+Environment=PATH=/home/mokhovs/.nvm/versions/node/v22.21.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/env bash deploy/run-gateway.sh 5014 mcp-prod deploy/.env.prod
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

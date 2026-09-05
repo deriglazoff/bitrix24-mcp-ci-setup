@@ -1,0 +1,581 @@
+{
+  "checked": 63,
+  "ok": [
+    {
+      "id": 476050,
+      "title": "МР ЦБ по обеспечению инф. безопасности при разработке и применении ИИ",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-18T18:00:00+03:00",
+      "when": "2026-08-21T07:36:38+03:00",
+      "responsible": "Мария Поздняк",
+      "chatId": "2539075",
+      "evidence": "------------------------------------------------------ [USER=1090128]Александр Мельников[/USER] [7 августа, 10:45] #chat2539075/176395337 Срок нужно определить в зависимости от сте"
+    },
+    {
+      "id": 487352,
+      "title": "Ошибки при загрузке продаж (S1) из РД в 1С. Июль 2026.",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T18:24:37+03:00",
+      "responsible": "Леонтий Мишуров",
+      "chatId": "2599092",
+      "evidence": "[USER=862926]Леонтий Мишуров[/USER] [USER=53438]Евгений Ветров[/USER] перегрузил продажи в 1С по Саммиту и Доброзайму за июль, везде остались расхождения в сумме продаже"
+    },
+    {
+      "id": 489232,
+      "title": "Проработка дизайна CorrespondenceBot",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": "2026-08-21T18:00:00+03:00",
+      "when": "2026-08-20T09:05:05+03:00",
+      "responsible": "Максим Елисеев",
+      "chatId": "2607921",
+      "evidence": "20.08 подготовлю вариант с новым отображением, т.к теперь есть информация по полям, и покажу как это будет рабоать."
+    },
+    {
+      "id": 489784,
+      "title": "8800 для ОЗЗ",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": "2026-08-21T18:00:00+03:00",
+      "when": "2026-08-20T08:35:58+03:00",
+      "responsible": "Илья Бережнов",
+      "chatId": "2610915",
+      "evidence": "[USER=321531]Илья Бережнов[/USER] подскажи пожалуйста, когда можно ожидать номер ?"
+    },
+    {
+      "id": 490031,
+      "title": "Убрать прямые обращения к ProtocolDB: RegisterOfQuitter_Clear",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-24T18:00:00+03:00",
+      "when": "2026-08-20T18:33:19+03:00",
+      "responsible": "Артём Болгов",
+      "chatId": "2612208",
+      "evidence": "Критерии для тестирования: Ссылка Мерж → [URL]https://gitlab.dobrozaim.ru/SqlDevelopers/sqlzaim/-/merge_requests/15559[/URL] [URL]https://gitlab.dobrozaim.ru/SqlDevelopers/protocol"
+    },
+    {
+      "id": 491230,
+      "title": "Доработки в ESB. Отправка параметров (тест)",
+      "from": "2026-08-20T13:32:12+03:00",
+      "to": "2026-08-21T13:32:00+03:00",
+      "when": "2026-08-20T14:29:53+03:00",
+      "responsible": "Варвара Соляная",
+      "chatId": "2618680",
+      "evidence": "тестирование проведено. Статус \"Успешно\". В процессе тестирования были обнаружены баги, не связанные с разработкой"
+    }
+  ],
+  "violations": [
+    {
+      "id": 439809,
+      "title": "Реализация валидатора БКИ на основе возможностей ИИ",
+      "from": "2026-08-14T18:00:00+03:00",
+      "to": "2026-08-31T18:00:00+03:00",
+      "when": "2026-08-20T08:22:22+03:00",
+      "responsible": "Николай Морковской",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=149)"
+    },
+    {
+      "id": 445275,
+      "title": "Автоматизация скриптов чексоста",
+      "from": "2026-08-14T18:00:00+03:00",
+      "to": "2026-08-28T18:00:00+03:00",
+      "when": "2026-08-20T11:33:53+03:00",
+      "responsible": "Никита Жиленков",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 445455,
+      "title": "Перенос ХП в схему Zabbix Pt.2",
+      "from": "2026-08-21T12:45:00+03:00",
+      "to": "2026-08-28T12:45:00+03:00",
+      "when": "2026-08-21T08:35:28+03:00",
+      "responsible": "Мария Сентяева",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 455974,
+      "title": "Доработки в БД SmartLombard",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T18:08:02+03:00",
+      "responsible": "Астемир Куашев",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=99)"
+    },
+    {
+      "id": 459747,
+      "title": "Корректировка логики передачи информации о просрочке в БКИ для клиентов в КК по мобилизации",
+      "from": "2026-08-21T03:52:00+03:00",
+      "to": "2026-08-31T03:52:00+03:00",
+      "when": "2026-08-20T08:11:42+03:00",
+      "responsible": "Николай Морковской",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=127)"
+    },
+    {
+      "id": 462121,
+      "title": "Анализ триггера по неотправленным АСП",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-24T18:00:00+03:00",
+      "when": "2026-08-20T14:59:14+03:00",
+      "responsible": "Роман Спесивец",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=34)"
+    },
+    {
+      "id": 465175,
+      "title": "Автоматизированная проверка контрагентов с финальным контролем человека.",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T12:09:35+03:00",
+      "responsible": "Дмитрий Владарчук",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=76)"
+    },
+    {
+      "id": 466485,
+      "title": "80% компаний готовы рассмотреть автоматизацию",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-28T18:00:00+03:00",
+      "when": "2026-08-20T18:07:13+03:00",
+      "responsible": "Станислав Саакян",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=10)"
+    },
+    {
+      "id": 468030,
+      "title": "Исправление работы плейсхолдеров",
+      "from": "2026-08-21T11:20:00+03:00",
+      "to": "2026-08-28T11:20:00+03:00",
+      "when": "2026-08-20T17:21:38+03:00",
+      "responsible": "Рустам Карабалаев",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=42)"
+    },
+    {
+      "id": 468149,
+      "title": "Пилотный проект для correspondence-bot",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T18:07:03+03:00",
+      "responsible": "Станислав Саакян",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 475903,
+      "title": "ПРОБЛЕМЫ С ПРОСТАВЛЕНИЕМ ДАТ ПЛАТЕЖЕЙ",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:29+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=37)"
+    },
+    {
+      "id": 477292,
+      "title": "Настройка структуры ОФП и источников данных МСФО в БИТ.ФИНАНС",
+      "from": "2026-08-22T08:00:00+03:00",
+      "to": "2026-09-05T08:00:00+03:00",
+      "when": "2026-08-21T08:01:58+03:00",
+      "responsible": "Саид Ремиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 480500,
+      "title": "Причины отправки сведений в БКИ не в срок (июнь 2026)",
+      "from": "2026-08-14T18:00:00+03:00",
+      "to": "2026-08-31T18:00:00+03:00",
+      "when": "2026-08-20T08:22:12+03:00",
+      "responsible": "Ангелина Апухтина",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 480567,
+      "title": "ПРОБЛЕМЫ С ПРОСТАВЛЕНИЕМ ДАТ ПЛАТЕЖЕЙ",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:10+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 480568,
+      "title": "ПРОБЛЕМЫ С ПРОСТАВЛЕНИЕМ ДАТ ПЛАТЕЖЕЙ",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:05+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 481216,
+      "title": "Переработка дизайна раздела Компания",
+      "from": "2026-08-28T18:00:00+03:00",
+      "to": "2026-09-30T18:00:00+03:00",
+      "when": "2026-08-20T11:41:12+03:00",
+      "responsible": "Силина Шейкх",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=42)"
+    },
+    {
+      "id": 481255,
+      "title": "Приложение 2. Добавить новые столбцы",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T18:23:28+03:00",
+      "responsible": "Леонтий Мишуров",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 481899,
+      "title": "Проблемы безопасности межсерверного взаимодействия (БД MS SQL s02/s-po-dev)",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:35+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 484503,
+      "title": "Приведение экранов к единым дизайн-стандартам",
+      "from": "2026-08-18T18:00:00+03:00",
+      "to": "2026-08-31T18:00:00+03:00",
+      "when": "2026-08-20T09:22:55+03:00",
+      "responsible": "Анастасия Цауня",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 484516,
+      "title": "Изменение заполнения раздела 3 МФД",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T12:56:26+03:00",
+      "responsible": "Елена Литвиненко",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 484683,
+      "title": "Обновление версии фреймворка",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-31T18:00:00+03:00",
+      "when": "2026-08-20T09:32:25+03:00",
+      "responsible": "Сергей Халеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 484696,
+      "title": "Актуализация инструкций по взаимодействию с кредитным конвейером",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-28T18:00:00+03:00",
+      "when": "2026-08-20T08:25:52+03:00",
+      "responsible": "Егор Парфинцов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 484900,
+      "title": "CorrespondenceBot для МинЦифр",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T18:01:31+03:00",
+      "responsible": "Станислав Саакян",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 485534,
+      "title": "ПО Займ Актуальные задачи (Tasks_Urgent_All)",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:18+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 485840,
+      "title": "Составление документации по процессам автоматизаций DEVOPS",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T09:08:52+03:00",
+      "responsible": "Александр Браташов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 486094,
+      "title": "Настройка приема переведенных звонков от внешнего партнера",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": "2026-08-31T18:00:00+03:00",
+      "when": "2026-08-20T08:37:05+03:00",
+      "responsible": "Илья Бережнов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 486559,
+      "title": "Актуализация инструкции по ошибкам выдачи",
+      "from": "2026-08-17T11:00:00+03:00",
+      "to": "2026-08-28T11:00:00+03:00",
+      "when": "2026-08-20T08:25:21+03:00",
+      "responsible": "Анастасия Абдурахманова",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=7)"
+    },
+    {
+      "id": 486695,
+      "title": "Подача в суд: работа с капчей Москва(мировые)",
+      "from": "2026-08-20T18:00:00+03:00",
+      "to": "2026-08-27T18:00:00+03:00",
+      "when": "2026-08-20T08:02:10+03:00",
+      "responsible": "Александр Евлаников",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 487658,
+      "title": "Доступные продукты добавить новый входящий параметр",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T12:22:38+03:00",
+      "responsible": "Артем Стыценко",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 487814,
+      "title": "Внешняя ссылка для сервиса SmsApprover",
+      "from": "2026-08-12T18:00:00+03:00",
+      "to": "2026-08-28T18:00:00+03:00",
+      "when": "2026-08-20T14:16:53+03:00",
+      "responsible": "Николай Болезкин",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 488129,
+      "title": "Отправка данных для ретро-теста со Скоринг бюро",
+      "from": "2026-08-20T11:54:00+03:00",
+      "to": "2026-08-27T11:54:00+03:00",
+      "when": "2026-08-20T00:36:51+03:00",
+      "responsible": "Николай Шишкин",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 488441,
+      "title": "Переработка дизайна раздела Компания | Точки входа и Наши стандарты",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T11:36:51+03:00",
+      "responsible": "Силина Шейкх",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 488532,
+      "title": "Делегирование заданий сотрудника Евгения Полякова",
+      "from": "2026-08-22T00:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T15:47:28+03:00",
+      "responsible": "Анастасия Ахметшина",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 488619,
+      "title": "Переполнение переменной. Ошибка при открытии ЛК после выданного займа на сайте/МП",
+      "from": "2026-08-14T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T08:15:18+03:00",
+      "responsible": "Кристина Дойчева",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 488967,
+      "title": "Демонстрационный стенд VizoricaID",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-25T18:00:00+03:00",
+      "when": "2026-08-21T08:28:37+03:00",
+      "responsible": "Игорь Гассельберг",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 488998,
+      "title": "Ошибка 2467",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:24+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489209,
+      "title": "FetchStoreProcedure 36/62",
+      "from": "2026-08-17T18:00:00+03:00",
+      "to": "2026-08-21T18:00:00+03:00",
+      "when": "2026-08-20T12:57:07+03:00",
+      "responsible": "Сергей Халеев",
+      "reason": "keyword match exists but outside ±1 day window (dayDiff=7)"
+    },
+    {
+      "id": 489510,
+      "title": "Регистрация в Сколково сервиса AI",
+      "from": "2026-08-31T18:00:00+03:00",
+      "to": "2026-09-11T18:00:00+03:00",
+      "when": "2026-08-21T07:22:55+03:00",
+      "responsible": "Владислав Анисимов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489726,
+      "title": "Добавить флаг включения/отключения отправки р/л",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-20T13:27:12+03:00",
+      "responsible": "Наталья Дериглазова",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489774,
+      "title": "Убрать прямые обращения к ProtocolDB: dbo.GetInfoOperationPayment",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-24T18:00:00+03:00",
+      "when": "2026-08-20T18:33:23+03:00",
+      "responsible": "Артём Болгов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489783,
+      "title": "Доработка API выгрузки статистики вызовов для ИИ",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": "2026-08-21T18:00:00+03:00",
+      "when": "2026-08-20T08:36:07+03:00",
+      "responsible": "Илья Бережнов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489900,
+      "title": "1. Аудит интерфейсов",
+      "from": "2026-08-20T17:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T09:33:34+03:00",
+      "responsible": "Максим Елисеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489902,
+      "title": "2. Визуальные основы",
+      "from": "2026-08-20T17:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T09:33:39+03:00",
+      "responsible": "Максим Елисеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489905,
+      "title": "3. Базовые компоненты",
+      "from": "2026-08-20T17:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T09:33:45+03:00",
+      "responsible": "Максим Елисеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489908,
+      "title": "4. Отображение данных",
+      "from": "2026-08-20T17:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T09:33:09+03:00",
+      "responsible": "Максим Елисеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489909,
+      "title": "5. Шаблоны страниц и проверка системы",
+      "from": "2026-08-20T17:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T09:33:15+03:00",
+      "responsible": "Максим Елисеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489910,
+      "title": "6. Документация",
+      "from": "2026-08-20T17:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T09:33:21+03:00",
+      "responsible": "Максим Елисеев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489978,
+      "title": "Убрать прямые обращения к ProtocolDB: ProductMatching.MakeArchiveCalcLog",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-24T18:00:00+03:00",
+      "when": "2026-08-20T18:33:22+03:00",
+      "responsible": "Артём Болгов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489991,
+      "title": "ХП для сервиса full-deal-sravni",
+      "from": "2026-08-20T18:00:00+03:00",
+      "to": "2026-09-03T18:00:00+03:00",
+      "when": "2026-08-21T08:34:39+03:00",
+      "responsible": "Мария Сентяева",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 489996,
+      "title": "Нелогируемые  ошибки CLR (6522)",
+      "from": "2026-08-20T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:40+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 490001,
+      "title": "Нелогируемые  ошибки CLR (6522)",
+      "from": "2026-08-20T18:00:00+03:00",
+      "to": "2026-09-04T18:00:00+03:00",
+      "when": "2026-08-21T08:19:45+03:00",
+      "responsible": "Даниил Аверкиев",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 490242,
+      "title": "Убрать прямые обращения к ProtocolDB: dbo.SMS_Logs",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-24T18:00:00+03:00",
+      "when": "2026-08-20T18:33:25+03:00",
+      "responsible": "Артём Болгов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 490244,
+      "title": "Убрать прямые обращения к ProtocolDB: dbo.MoveLogsToProtocolDB",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-24T18:00:00+03:00",
+      "when": "2026-08-20T18:33:28+03:00",
+      "responsible": "Артём Болгов",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 490253,
+      "title": "Обновление ОС на ВМ c1raza.ru",
+      "from": "2026-08-21T18:00:00+03:00",
+      "to": "2026-08-31T18:00:00+03:00",
+      "when": "2026-08-21T08:02:24+03:00",
+      "responsible": "Николай Болезкин",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 491200,
+      "title": "488592: Интеграция Тренингов и Тренажеров в ПВД и ИПР | Интеграция | Тестирование (тест) #Портал",
+      "from": "2026-08-20T12:22:11+03:00",
+      "to": null,
+      "when": "2026-08-20T12:22:23+03:00",
+      "responsible": "Ростислав Москалец",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 491274,
+      "title": "VfLeads. Не пройдена проверка создания клиента (тест) #Сервисы",
+      "from": "2026-08-20T14:59:33+03:00",
+      "to": "2026-08-21T14:59:00+03:00",
+      "when": "2026-08-20T08:04:32+03:00",
+      "responsible": "Наталья Макарова",
+      "reason": "no valid status comment near deadline change"
+    },
+    {
+      "id": 491276,
+      "title": "Изменение заполнения раздела 2 МФД",
+      "from": "2026-08-19T18:00:00+03:00",
+      "to": null,
+      "when": "2026-08-20T12:56:16+03:00",
+      "responsible": "Елена Литвиненко",
+      "reason": "no valid status comment near deadline change"
+    }
+  ],
+  "unchecked": []
+}

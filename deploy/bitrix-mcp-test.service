@@ -1,0 +1,16 @@
+[Unit]
+Description=Bitrix24 MCP gateway (TEST) on :5013
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mokhovs
+WorkingDirectory=/mnt/c/projects/bitrix24-mcp-bit2beat
+Environment=PATH=/home/mokhovs/.nvm/versions/node/v22.21.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/env bash deploy/run-gateway.sh 5013 mcp-test deploy/.env.test
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

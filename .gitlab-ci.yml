@@ -1,0 +1,98 @@
+# Bitrix24 MCP-шлюз — CI/CD по стандарту dobrozaim (GitLab → Harbor → Swarm). Порт 5015.
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "api"'
+    - if: '$CI_COMMIT_TAG'
+
+stages:
+  - build_and_push
+  - deploy_test
+  - deploy_prod
+
+variables:
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+  IMAGE_LIBRARY: python
+
+build_and_push:
+  stage: build_and_push
+  image: docker:20.10.17
+  tags: [ai.prod]
+  script:
+    - docker login -u "robot$"$REGISTRY_CI_USER -p $REGISTRY_CI_PASSWORD $REGISTRY_SERVER_HARBOR
+    - docker build -t ${REGISTRY_SERVER_HARBOR}/$IMAGE_LIBRARY/bitrix24-mcp:${IMAGE_TAG} -f Dockerfile .
+    - docker push ${REGISTRY_SERVER_HARBOR}/$IMAGE_LIBRARY/bitrix24-mcp:${IMAGE_TAG}
+
+deploy_test:
+  stage: deploy_test
+  tags: [ai.dobrozaim.test]
+  image: image-registry.dobrozaim.ru/services_department/docker_advanced:stable
+  environment:
+    name: Test
+    url: "http://ai.dobrozaim.test:5015"
+  script:
+    - docker login -u "robot$"$REGISTRY_CI_USER -p $REGISTRY_CI_PASSWORD $REGISTRY_SERVER_HARBOR
+    - docker pull ${REGISTRY_SERVER_HARBOR}/python/bitrix24-mcp:${IMAGE_TAG}
+    - docker stack rm bitrix24_mcp_stack_test || true
+    - sleep 5
+    - export IMAGE_TAG=$IMAGE_TAG
+    - export SERVICE_PORT=5015
+    - export B24_DEFAULT_WEBHOOK=$B24_DEFAULT_WEBHOOK
+    - export B24_PERSONAL_WEBHOOK=${B24_PERSONAL_WEBHOOK:-}
+    - export MCP_API_KEY=${MCP_API_KEY_TEST:-}
+    - export B24_READONLY=true   # тестовый стенд — только чтение (для RAG-агента поддержки)
+    - docker network create --driver overlay bitrix24_mcp_network || true
+    - docker stack deploy --with-registry-auth -c deploy/docker-compose.yml bitrix24_mcp_stack_test
+    # Ждём готовности до ~120с: healthcheck стартует через start-period=20s, поэтому
+    # одной проверки на 20-й секунде недостаточно (реплики ещё 0/1).
+    - |
+      svc=bitrix24_mcp_stack_test_app
+      for i in $(seq 1 24); do
+        REPLICAS=$(docker service ls --format "{{.Name}} {{.Replicas}}" | sed -n "s/^${svc} //p")
+        echo "[$i/24] Replicas:${REPLICAS:-<unknown>}"
+        [ "$REPLICAS" = "1/1" ] && break
+        sleep 5
+      done
+      docker service ps --no-trunc "$svc" || true
+      if [ "$REPLICAS" != "1/1" ]; then docker service logs --since 3m "$svc" || true; echo "Service not running (expected 1/1)"; exit 1; fi
+      echo "OK http://ai.dobrozaim.test:5015/sse"
+  when: on_success
+
+deploy_prod:
+  stage: deploy_prod
+  tags: [ai.prod]
+  image: image-registry.dobrozaim.ru/services_department/docker_advanced:stable
+  environment:
+    name: Production
+    url: "http://ai.dobrozaim.ru:5015"
+  script:
+    - docker login -u "robot$"$REGISTRY_CI_USER -p $REGISTRY_CI_PASSWORD $REGISTRY_SERVER_HARBOR
+    - docker pull ${REGISTRY_SERVER_HARBOR}/python/bitrix24-mcp:${IMAGE_TAG}
+    - docker stack rm bitrix24_mcp_stack_prod || true
+    - sleep 5
+    - export IMAGE_TAG=$IMAGE_TAG
+    - export SERVICE_PORT=5015
+    - export B24_DEFAULT_WEBHOOK=$B24_DEFAULT_WEBHOOK
+    - export B24_PERSONAL_WEBHOOK=${B24_PERSONAL_WEBHOOK:-}
+    - export MCP_API_KEY=${MCP_API_KEY_PROD:-}
+    - export B24_READONLY=${B24_READONLY_PROD:-true}   # prod: общий вебхук read-only; запись — только через личный вебхук
+    - docker network create --driver overlay bitrix24_mcp_network || true
+    - docker stack deploy --with-registry-auth -c deploy/docker-compose.yml bitrix24_mcp_stack_prod
+    # Ждём готовности до ~120с: healthcheck стартует через start-period=20s, поэтому
+    # одной проверки на 20-й секунде недостаточно (реплики ещё 0/1).
+    - |
+      svc=bitrix24_mcp_stack_prod_app
+      for i in $(seq 1 24); do
+        REPLICAS=$(docker service ls --format "{{.Name}} {{.Replicas}}" | sed -n "s/^${svc} //p")
+        echo "[$i/24] Replicas:${REPLICAS:-<unknown>}"
+        [ "$REPLICAS" = "1/1" ] && break
+        sleep 5
+      done
+      docker service ps --no-trunc "$svc" || true
+      if [ "$REPLICAS" != "1/1" ]; then docker service logs --since 3m "$svc" || true; echo "Service not running (expected 1/1)"; exit 1; fi
+      echo "OK http://ai.dobrozaim.ru:5015/sse"
+  when: on_success
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_TAG'

@@ -1,0 +1,549 @@
+[
+  {
+    "id": "410007",
+    "title": "ИИ. Прогноз просрочек. Выгрузить данные о договорах и клиентах",
+    "description": "Цель: сформировать реестры с данными о клиентах и платежах для проекта прогноз просрочек\r\n[LIST]\r\n[*]Сергей — сформулировать и отправить список необходимых данных для анализа просрочек \r\n[*]Владислав — выгрузить данные по договорам для анализа просрочек\r\n[/LIST]Результат: сформированные реестры в файлах для обучения модели прогнозирования",
+    "responsibleId": "43357",
+    "createdBy": "871947",
+    "createdDate": "2025-09-05T13:31:07+03:00",
+    "changedDate": "2026-03-11T15:37:54+03:00",
+    "closedDate": "2025-10-10T16:24:25+03:00",
+    "deadline": null,
+    "parentId": "401098",
+    "priority": "1",
+    "ufCrmTask": null,
+    "timeEstimate": "0",
+    "timeSpentInLogs": null,
+    "closedBy": "43357",
+    "forumId": "8",
+    "forumTopicId": "460622",
+    "ufFollow": null,
+    "ufFollowStatus": null,
+    "ufTaskScale": null,
+    "ufCRate": null,
+    "ufCinReport": "1",
+    "ufCComment": null,
+    "ufCpCond1": null,
+    "ufCpCond2": null,
+    "ufCpCond3": null,
+    "ufMailMessage": null,
+    "ufTaskEstimation": null,
+    "ufTaskSprintDate": null,
+    "ufRating": "1",
+    "ufSwitcherTask": "160",
+    "ufSummitTaskcolorsMainColor": null,
+    "descriptionInBbcode": "Y",
+    "status": "5",
+    "statusChangedDate": "2025-10-10T16:24:25+03:00",
+    "groupId": "411",
+    "auditors": [],
+    "accomplices": [
+      "43357"
+    ],
+    "group": {
+      "id": "411",
+      "name": "Проекты ИИ",
+      "opened": true,
+      "membersCount": 35,
+      "image": "/upload/socialnetwork/45a/8gk2n2gmvgxtm9bv20lu2vjyu0be4iwc/Снимок экрана 2024-08-30 в 11.19.29.png",
+      "additionalData": []
+    },
+    "creator": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "responsible": {
+      "id": "43357",
+      "name": "Владислав Дериглазов",
+      "link": "/company/personal/user/43357/",
+      "icon": "/upload/resize_cache/main/7df/g46iqyujjs2swqb8ezxeo0gjjw8uwn5v/58_58_2/IMG20220717161042.png",
+      "workPosition": "Руководитель 1 категории"
+    },
+    "accomplicesData": {
+      "43357": {
+        "id": "43357",
+        "name": "Владислав Дериглазов",
+        "link": "/company/personal/user/43357/",
+        "icon": "/upload/resize_cache/main/7df/g46iqyujjs2swqb8ezxeo0gjjw8uwn5v/58_58_2/IMG20220717161042.png",
+        "workPosition": "Руководитель 1 категории"
+      }
+    },
+    "auditorsData": [],
+    "tags": {
+      "9046": {
+        "id": 9046,
+        "title": "sp2"
+      },
+      "10982": {
+        "id": 10982,
+        "title": "15.09.2025"
+      },
+      "11049": {
+        "id": 11049,
+        "title": "29.09.2025"
+      }
+    },
+    "subStatus": "5"
+  },
+  {
+    "id": "414594",
+    "title": "Прогноз просрочки. 1 итерация",
+    "description": "Бизнес-цель\r\nОсновная задача: Прогнозировать вероятную дату ближайшего платежа после наступления просрочки займа\r\nФинансовая цель: Сократить средний срок возврата после просрочки на ~10%, что даст экономию ~440 тыс. рублей/месяц\r\nЦелевые пользователи: Отдел взыскания, операционный департамент\r\n\r\nСтруктура доступных данных\r\n\r\nПо файлам из inputs/:\r\nproducts.csv (Тарифная сетка) - содержит:\r\nПараметры кредитных продуктов (keyTL, keyDZT)\r\nСроки займа (d1, d2 - в днях)\r\nСуммы (sum1, sum2 - диапазоны)\r\nПроцентные ставки (Prc, PSK)\r\nПериоды просрочки (Moratory)\r\n\r\nexpdata2.csv (Исторические данные по займам) - содержит:\r\nИдентификаторы займа (keyDZ) и клиента (keyPart)\r\nСкоринговый балл (Score)\r\nПараметры договора (сумма, срок, дата выдачи, дата планового погашения)\r\nВажно: PaymentsJson - история фактических платежей клиента\r\nGraphJson - плановый график платежей\r\nPromize - обещания клиента о платеже\r\ncomments - комментарии по работе с клиентом\r\n\r\nki.csv (Кредитная история) - огромный файл с детальной историей",
+    "responsibleId": "871947",
+    "createdBy": "43357",
+    "createdDate": "2025-09-26T17:01:40+03:00",
+    "changedDate": "2026-01-14T13:00:22+03:00",
+    "closedDate": "2025-10-15T14:06:47+03:00",
+    "deadline": null,
+    "parentId": "401098",
+    "priority": "1",
+    "ufCrmTask": null,
+    "timeEstimate": "0",
+    "timeSpentInLogs": "21600",
+    "closedBy": "871947",
+    "forumId": "8",
+    "forumTopicId": "466677",
+    "ufFollow": null,
+    "ufFollowStatus": null,
+    "ufTaskScale": null,
+    "ufCRate": null,
+    "ufCinReport": "1",
+    "ufCComment": null,
+    "ufCpCond1": null,
+    "ufCpCond2": null,
+    "ufCpCond3": null,
+    "ufMailMessage": null,
+    "ufTaskEstimation": null,
+    "ufTaskSprintDate": null,
+    "ufRating": "1",
+    "ufSwitcherTask": "160",
+    "ufSummitTaskcolorsMainColor": null,
+    "descriptionInBbcode": "Y",
+    "status": "5",
+    "statusChangedDate": "2025-10-15T14:06:47+03:00",
+    "groupId": "411",
+    "auditors": [
+      "6031",
+      "6844",
+      "216490"
+    ],
+    "accomplices": [],
+    "group": {
+      "id": "411",
+      "name": "Проекты ИИ",
+      "opened": true,
+      "membersCount": 35,
+      "image": "/upload/socialnetwork/45a/8gk2n2gmvgxtm9bv20lu2vjyu0be4iwc/Снимок экрана 2024-08-30 в 11.19.29.png",
+      "additionalData": []
+    },
+    "creator": {
+      "id": "43357",
+      "name": "Владислав Дериглазов",
+      "link": "/company/personal/user/43357/",
+      "icon": "/upload/resize_cache/main/7df/g46iqyujjs2swqb8ezxeo0gjjw8uwn5v/58_58_2/IMG20220717161042.png",
+      "workPosition": "Руководитель 1 категории"
+    },
+    "responsible": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "accomplicesData": [],
+    "auditorsData": {
+      "6031": {
+        "id": "6031",
+        "name": "Вероника Бурова",
+        "link": "/company/personal/user/6031/",
+        "icon": "/upload/resize_cache/main/9f1/5fpzxq6g84zhcqk2fojko24ntw69xcmp/58_58_2/mobile_file_2023-09-04_13-51-45.jpg.png",
+        "workPosition": "Операционный директор"
+      },
+      "6844": {
+        "id": "6844",
+        "name": "Максим Серебров",
+        "link": "/company/personal/user/6844/",
+        "icon": "/upload/resize_cache/main/848/58_58_2/ds9npXW9iUg.jpg",
+        "workPosition": "Руководитель службы взыскания"
+      },
+      "216490": {
+        "id": "216490",
+        "name": "Елена Кекух",
+        "link": "/company/personal/user/216490/",
+        "icon": "/upload/resize_cache/main/cc1/6pgm84n55p4z2xerfw1wiy3o3ai22sas/58_58_2/IMG_0225.jpg.png",
+        "workPosition": "Старший юрист"
+      }
+    },
+    "tags": {
+      "9046": {
+        "id": 9046,
+        "title": "sp2"
+      },
+      "11049": {
+        "id": 11049,
+        "title": "29.09.2025"
+      },
+      "11147": {
+        "id": 11147,
+        "title": "13.10.2025"
+      }
+    },
+    "subStatus": "5"
+  },
+  {
+    "id": "419081",
+    "title": "Прогнозирование просрочки. Переобучение",
+    "description": "Провести встречу с заказчиком\r\nПредложить проверить текущих клиентов ",
+    "responsibleId": "871947",
+    "createdBy": "43357",
+    "createdDate": "2025-10-16T16:38:25+03:00",
+    "changedDate": "2026-01-14T13:00:22+03:00",
+    "closedDate": "2025-11-07T14:22:06+03:00",
+    "deadline": null,
+    "parentId": "401098",
+    "priority": "1",
+    "ufCrmTask": null,
+    "timeEstimate": "0",
+    "timeSpentInLogs": "28800",
+    "closedBy": "871947",
+    "forumId": "8",
+    "forumTopicId": "472506",
+    "ufFollow": "0",
+    "ufFollowStatus": null,
+    "ufTaskScale": "91",
+    "ufCRate": null,
+    "ufCinReport": "1",
+    "ufCComment": null,
+    "ufCpCond1": null,
+    "ufCpCond2": null,
+    "ufCpCond3": null,
+    "ufMailMessage": null,
+    "ufTaskEstimation": null,
+    "ufTaskSprintDate": null,
+    "ufRating": "1",
+    "ufSwitcherTask": "160",
+    "ufSummitTaskcolorsMainColor": null,
+    "descriptionInBbcode": "Y",
+    "status": "5",
+    "statusChangedDate": "2025-11-07T14:22:06+03:00",
+    "groupId": "411",
+    "auditors": [
+      "6844"
+    ],
+    "accomplices": [],
+    "group": {
+      "id": "411",
+      "name": "Проекты ИИ",
+      "opened": true,
+      "membersCount": 35,
+      "image": "/upload/socialnetwork/45a/8gk2n2gmvgxtm9bv20lu2vjyu0be4iwc/Снимок экрана 2024-08-30 в 11.19.29.png",
+      "additionalData": []
+    },
+    "creator": {
+      "id": "43357",
+      "name": "Владислав Дериглазов",
+      "link": "/company/personal/user/43357/",
+      "icon": "/upload/resize_cache/main/7df/g46iqyujjs2swqb8ezxeo0gjjw8uwn5v/58_58_2/IMG20220717161042.png",
+      "workPosition": "Руководитель 1 категории"
+    },
+    "responsible": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "accomplicesData": [],
+    "auditorsData": {
+      "6844": {
+        "id": "6844",
+        "name": "Максим Серебров",
+        "link": "/company/personal/user/6844/",
+        "icon": "/upload/resize_cache/main/848/58_58_2/ds9npXW9iUg.jpg",
+        "workPosition": "Руководитель службы взыскания"
+      }
+    },
+    "tags": {
+      "8460": {
+        "id": 8460,
+        "title": "sp3"
+      },
+      "8893": {
+        "id": 8893,
+        "title": "ИИ"
+      },
+      "11255": {
+        "id": 11255,
+        "title": "27.10.2025"
+      }
+    },
+    "subStatus": "5"
+  },
+  {
+    "id": "430222",
+    "title": "ИИ. Пилот прогнозирования платежей на просроке",
+    "description": "Цель: провести пилот на реальных данных заказчика и подтердить точность модели\r\n\r\n- получить реестры от заказчика\r\n- добавить прогнозн тиров следующего платежа добавить в реестры\r\n- сверить с реальными данными и определить \r\n\r\n\r\n",
+    "responsibleId": "871947",
+    "createdBy": "871947",
+    "createdDate": "2025-12-04T16:43:46+03:00",
+    "changedDate": "2026-01-21T14:22:57+03:00",
+    "closedDate": "2026-01-12T12:58:56+03:00",
+    "deadline": null,
+    "parentId": "401098",
+    "priority": "1",
+    "ufCrmTask": null,
+    "timeEstimate": "0",
+    "timeSpentInLogs": "25200",
+    "closedBy": "871947",
+    "forumId": "8",
+    "forumTopicId": "489324",
+    "ufFollow": null,
+    "ufFollowStatus": null,
+    "ufTaskScale": null,
+    "ufCRate": null,
+    "ufCinReport": "1",
+    "ufCComment": null,
+    "ufCpCond1": null,
+    "ufCpCond2": null,
+    "ufCpCond3": null,
+    "ufMailMessage": null,
+    "ufTaskEstimation": null,
+    "ufTaskSprintDate": null,
+    "ufRating": "1",
+    "ufSwitcherTask": "160",
+    "ufSummitTaskcolorsMainColor": null,
+    "descriptionInBbcode": "Y",
+    "status": "5",
+    "statusChangedDate": "2026-01-12T12:58:56+03:00",
+    "groupId": "411",
+    "auditors": [
+      "6844",
+      "43357"
+    ],
+    "accomplices": [],
+    "group": {
+      "id": "411",
+      "name": "Проекты ИИ",
+      "opened": true,
+      "membersCount": 35,
+      "image": "/upload/socialnetwork/45a/8gk2n2gmvgxtm9bv20lu2vjyu0be4iwc/Снимок экрана 2024-08-30 в 11.19.29.png",
+      "additionalData": []
+    },
+    "creator": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "responsible": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "accomplicesData": [],
+    "auditorsData": {
+      "6844": {
+        "id": "6844",
+        "name": "Максим Серебров",
+        "link": "/company/personal/user/6844/",
+        "icon": "/upload/resize_cache/main/848/58_58_2/ds9npXW9iUg.jpg",
+        "workPosition": "Руководитель службы взыскания"
+      },
+      "43357": {
+        "id": "43357",
+        "name": "Владислав Дериглазов",
+        "link": "/company/personal/user/43357/",
+        "icon": "/upload/resize_cache/main/7df/g46iqyujjs2swqb8ezxeo0gjjw8uwn5v/58_58_2/IMG20220717161042.png",
+        "workPosition": "Руководитель 1 категории"
+      }
+    },
+    "tags": {
+      "8893": {
+        "id": 8893,
+        "title": "ИИ"
+      },
+      "9037": {
+        "id": 9037,
+        "title": "sp1"
+      },
+      "11503": {
+        "id": 11503,
+        "title": "08.12.2025"
+      },
+      "11602": {
+        "id": 11602,
+        "title": "22.12.2025"
+      }
+    },
+    "subStatus": "5"
+  },
+  {
+    "id": "466882",
+    "title": "Выгргузить данные по реестру должников",
+    "description": "Требуется выгрзить данные должников для прогноза платежей на базе реестра приложенного",
+    "responsibleId": "297314",
+    "createdBy": "871947",
+    "createdDate": "2026-05-13T12:53:50+03:00",
+    "changedDate": "2026-08-21T16:29:12+03:00",
+    "closedDate": null,
+    "deadline": null,
+    "parentId": "401098",
+    "priority": "1",
+    "ufCrmTask": null,
+    "timeEstimate": "0",
+    "timeSpentInLogs": null,
+    "closedBy": null,
+    "forumId": null,
+    "forumTopicId": null,
+    "ufTaskWebdavFiles": null,
+    "ufFollow": null,
+    "ufFollowStatus": null,
+    "ufTaskScale": null,
+    "ufCRate": null,
+    "ufCinReport": null,
+    "ufCComment": null,
+    "ufCpCond1": null,
+    "ufCpCond2": null,
+    "ufCpCond3": null,
+    "ufMailMessage": null,
+    "ufTaskEstimation": null,
+    "ufTaskSprintDate": null,
+    "ufRating": null,
+    "ufSwitcherTask": "160",
+    "ufSummitTaskcolorsMainColor": null,
+    "descriptionInBbcode": "Y",
+    "status": "2",
+    "statusChangedDate": "2026-05-29T16:49:40+03:00",
+    "groupId": "411",
+    "auditors": [
+      "216490"
+    ],
+    "accomplices": [
+      "297314"
+    ],
+    "group": {
+      "id": "411",
+      "name": "Проекты ИИ",
+      "opened": true,
+      "membersCount": 35,
+      "image": "/upload/socialnetwork/45a/8gk2n2gmvgxtm9bv20lu2vjyu0be4iwc/Снимок экрана 2024-08-30 в 11.19.29.png",
+      "additionalData": []
+    },
+    "creator": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "responsible": {
+      "id": "297314",
+      "name": "Владислав Кутепов",
+      "link": "/company/personal/user/297314/",
+      "icon": "/upload/resize_cache/main/53b/gcb69o59h29at6w6pjfgmiam7dajpv61/58_58_2/photo_2026-03-28_18-14-43.jpg.png",
+      "workPosition": "Ведущий программист  3 категории"
+    },
+    "accomplicesData": {
+      "297314": {
+        "id": "297314",
+        "name": "Владислав Кутепов",
+        "link": "/company/personal/user/297314/",
+        "icon": "/upload/resize_cache/main/53b/gcb69o59h29at6w6pjfgmiam7dajpv61/58_58_2/photo_2026-03-28_18-14-43.jpg.png",
+        "workPosition": "Ведущий программист  3 категории"
+      }
+    },
+    "auditorsData": {
+      "216490": {
+        "id": "216490",
+        "name": "Елена Кекух",
+        "link": "/company/personal/user/216490/",
+        "icon": "/upload/resize_cache/main/cc1/6pgm84n55p4z2xerfw1wiy3o3ai22sas/58_58_2/IMG_0225.jpg.png",
+        "workPosition": "Старший юрист"
+      }
+    },
+    "tags": [],
+    "subStatus": "2"
+  },
+  {
+    "id": "470361",
+    "title": "Анализ прогноза просрочки реестра неплатилщиков",
+    "description": "",
+    "responsibleId": "871947",
+    "createdBy": "871947",
+    "createdDate": "2026-05-27T13:38:47+03:00",
+    "changedDate": "2026-05-28T14:02:11+03:00",
+    "closedDate": "2026-05-28T14:02:11+03:00",
+    "deadline": null,
+    "parentId": "401098",
+    "priority": "1",
+    "ufCrmTask": null,
+    "timeEstimate": "0",
+    "timeSpentInLogs": "7200",
+    "closedBy": "871947",
+    "forumId": null,
+    "forumTopicId": null,
+    "ufTaskWebdavFiles": null,
+    "ufFollow": null,
+    "ufFollowStatus": null,
+    "ufTaskScale": null,
+    "ufCRate": null,
+    "ufCinReport": null,
+    "ufCComment": null,
+    "ufCpCond1": null,
+    "ufCpCond2": null,
+    "ufCpCond3": null,
+    "ufMailMessage": null,
+    "ufTaskEstimation": null,
+    "ufTaskSprintDate": null,
+    "ufRating": null,
+    "ufSwitcherTask": "160",
+    "ufSummitTaskcolorsMainColor": null,
+    "descriptionInBbcode": "Y",
+    "status": "5",
+    "statusChangedDate": "2026-05-28T14:02:11+03:00",
+    "groupId": "411",
+    "auditors": [],
+    "accomplices": [],
+    "group": {
+      "id": "411",
+      "name": "Проекты ИИ",
+      "opened": true,
+      "membersCount": 35,
+      "image": "/upload/socialnetwork/45a/8gk2n2gmvgxtm9bv20lu2vjyu0be4iwc/Снимок экрана 2024-08-30 в 11.19.29.png",
+      "additionalData": []
+    },
+    "creator": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "responsible": {
+      "id": "871947",
+      "name": "Сергей Мохов",
+      "link": "/company/personal/user/871947/",
+      "icon": "/upload/resize_cache/main/e2c/k8r30vak8jfk86ay38v99ambg23p0684/58_58_2/b279fc8dcfd244b997aaf2e074a687ad.png",
+      "workPosition": "Ведущий программист 2 категории"
+    },
+    "accomplicesData": [],
+    "auditorsData": [],
+    "tags": {
+      "9044": {
+        "id": 9044,
+        "title": "sp0"
+      },
+      "12350": {
+        "id": 12350,
+        "title": "18.05.2026"
+      }
+    },
+    "subStatus": "5"
+  }
+]

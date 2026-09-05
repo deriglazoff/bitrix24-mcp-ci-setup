@@ -1,0 +1,33 @@
+# Docker Swarm stack — Bitrix24 MCP-шлюз. Стандарт dobrozaim. Порт 5015 (test+prod).
+version: "3.8"
+
+services:
+  app:
+    image: ${REGISTRY_SERVER_HARBOR}/python/bitrix24-mcp:${IMAGE_TAG}
+    restart: always
+    environment:
+      - PORT=5015
+      - B24_DEFAULT_WEBHOOK=${B24_DEFAULT_WEBHOOK}
+      - B24_PERSONAL_WEBHOOK=${B24_PERSONAL_WEBHOOK:-}
+      - MCP_API_KEY=${MCP_API_KEY:-}
+      - B24_READONLY=${B24_READONLY:-true}  # FAIL-SAFE: по умолчанию только чтение; запись только при явном B24_READONLY=false
+      - B24_MCP_PROFILE=${B24_MCP_PROFILE:-daily}  # daily: без apply/compare/full_config/mapping; full: все 44 tools
+    ports:
+      - "${SERVICE_PORT:-5015}:5015"
+    networks:
+      - bitrix24_mcp_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('net').connect(5015,'127.0.0.1').on('connect',()=>process.exit(0)).on('error',()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+networks:
+  bitrix24_mcp_network:
+    external: true
+    name: bitrix24_mcp_network
